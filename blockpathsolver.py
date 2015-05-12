@@ -7,9 +7,9 @@ BLOCK = -5
 EMPTY = -1
 HEIGHT = 8
 WIDTH = 6
-POINTS = [(2,1), (4,2), (3,3), (5,4), (2,5), (5,5), (4,6)]
+REDS = [(2,1), (4,2), (3,3), (5,4), (2,5), (5,5), (4,6)]
 START = (3,0)
-END = (HEIGHT * WIDTH) - len(POINTS)
+END = (HEIGHT * WIDTH) - len(REDS)
 
 def create_board(height, width, block_list):
     """ Given a height, width, and list of tuple points, creates a create_board
@@ -27,6 +27,7 @@ def solve(board, point, end, turns):
         return (False, board)
     value = board[point[1]][point[0]]
     if value != EMPTY:
+        print("Hit Red block")
         return (False, board)
 
     board[point[1]][point[0]] = turns
@@ -60,7 +61,7 @@ def format_board(board):
     print("")
     
 def main():
-    board = create_board(HEIGHT, WIDTH, POINTS)
+    board = create_board(HEIGHT, WIDTH, REDS)
     answer = solve(deepcopy(board), START, END, 1)[1]
     format_board(answer)
 
